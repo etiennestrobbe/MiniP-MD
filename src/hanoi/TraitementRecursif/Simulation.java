@@ -10,8 +10,10 @@ import hanoi.Element.*;
 public class Simulation {
 	private Plateau plateau;
 	private int nbDisques;
+	private HanoiView view;
 	
 	public Simulation(int nbDisques){
+		view = new HanoiView(nbDisques);
 		plateau = new Plateau(nbDisques);
 		this.nbDisques = nbDisques;
 	}
