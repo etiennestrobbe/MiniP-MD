@@ -16,14 +16,23 @@ public class Simulation {
 		this.nbDisques = nbDisques;
 	}
 	
-	private void Hanoi(int nbDisques,Tour D,Tour A,Tour I){
+	private void Hanoi(int nbDisques,Tour D,Tour A,Tour I) {
 		if(nbDisques!=0){
 			Hanoi(nbDisques-1,D,I,A);
+			
+			
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			//Deplace D vers A
 			plateau.DeplacerDisque(D,A);
-			System.out.println(plateau);
 			Hanoi(nbDisques-1,I,A,D);
 		}
+		view.display(plateau);
 	}
 	
 	public void runSimulation(){
