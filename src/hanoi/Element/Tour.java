@@ -68,5 +68,7 @@ public class Tour {
 		return res;
 	}
 	
-
+	public LinkedList<Disque> getDisques() {
+		return disques;
+	}
 }

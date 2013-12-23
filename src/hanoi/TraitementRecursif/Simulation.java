@@ -3,6 +3,7 @@
  */
 package hanoi.TraitementRecursif;
 import hanoi.Element.*;
+import hanoi.view.HanoiView;
 /**
  * @author Etienne Strobbe
  *
