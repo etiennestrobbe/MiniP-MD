@@ -142,7 +142,14 @@ public class HanoiView extends JFrame {
 			}
 			y -= (etage-1)*(DISC_HEIGHT+1);
 			
-			g.fillRect(x, y, discsize, DISC_HEIGHT);
+			//g.fillRect(x, y, discsize, DISC_HEIGHT);
+			
+			int[] xpts = new int[] { x + DISC_HEIGHT / 2, x,
+					x + DISC_HEIGHT / 2, x + discsize - DISC_HEIGHT / 2,
+					x + discsize, x + discsize - DISC_HEIGHT / 2 };
+			int[] ypts = new int[] { y, y + DISC_HEIGHT / 2, y + DISC_HEIGHT,
+					y + DISC_HEIGHT, y + DISC_HEIGHT / 2, y };
+			g.fillPolygon(xpts, ypts, 6);
 		}
 
 		/**
