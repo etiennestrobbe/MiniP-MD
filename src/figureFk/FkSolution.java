@@ -32,6 +32,10 @@ public class FkSolution extends AbstractSolution {
 		super(profondeur);
 	}
 
+	public FkSolution(double d, double e, int i) {
+		super(d,e,i);
+	}
+
 	/**
 	 * Méthode récursive pour dessiner la famille Fk de la classe.
 	 * On dessine deux petit cercles tangents au cercle actuel tout
