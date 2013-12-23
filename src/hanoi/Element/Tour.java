@@ -5,7 +5,6 @@ package hanoi.Element;
 
 import hanoi.exception.DisqueTropGrandException;
 
-import java.nio.charset.Charset;
 import java.util.LinkedList;
 
 /**

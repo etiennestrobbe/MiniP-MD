@@ -9,7 +9,7 @@ import hanoi.exception.TourVideException;
 import hanoi.view.HanoiView;
 
 /**
- * @author Etienne Strobbe
+ * @author Etienne Strobbe (Récursif) et Jean-Christophe Isoard (Itératif)
  * 
  */
 public class Simulation {
@@ -90,6 +90,9 @@ public class Simulation {
 				plateau.DeplacerDisque(B, A);
 			} catch (DisqueTropGrandException | TourVideException e2) {
 				System.err.println("Something is wrong ...");
+				if (e2 instanceof TourVideException)
+					System.err
+							.println("Vous avez essayé de déplacer un disque entre deux tour vides");
 			}
 		}
 		view.display(plateau);

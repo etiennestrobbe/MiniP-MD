@@ -2,7 +2,6 @@ package hanoi.view;
 
 import hanoi.Element.Disque;
 import hanoi.Element.Plateau;
-import hanoi.Element.Tour;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -78,6 +78,7 @@ public class HanoiView extends JFrame {
 		private int towerheight;
 		private int basewidth;
 		private int firsttower;
+		private int discsizeRatio;
 		
 		/**
 		 * Create a new FieldView component.
@@ -113,6 +114,7 @@ public class HanoiView extends JFrame {
 
 				firsttower = (basewidth-TOWER_WIDTH*3)/8;
 				spacebetweentowers = (basewidth-TOWER_WIDTH*3)/4;
+				discsizeRatio = spacebetweentowers/nbDiscs;
 			}
 		}
 
@@ -140,7 +142,7 @@ public class HanoiView extends JFrame {
 			int x = MARGINS;
 			int y = towerheight;
 			
-			int discsize = size*(spacebetweentowers/nbDiscs);
+			int discsize = size*discsizeRatio;
 			
 			if(tour==0) {
 				x+=firsttower+tour*TOWER_WIDTH-discsize/2+TOWER_WIDTH/2;
