@@ -10,6 +10,7 @@
  */
 package figureFk;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import drawSolution.AbstractSolution;
@@ -29,11 +30,11 @@ public class FkSolution extends AbstractSolution {
 	 */
 
 	public FkSolution(int profondeur) {
-		super(profondeur);
+		super(-0.25,-0.25,profondeur);
 	}
-
-	public FkSolution(double d, double e, int i) {
-		super(d,e,i);
+	
+	public FkSolution(int profondeur, int fill) {
+		super(-0.25,-0.25,profondeur,fill);
 	}
 
 	/**
@@ -52,7 +53,10 @@ public class FkSolution extends AbstractSolution {
 		if (arg[3] == 0) {
 			drawingArea.drawOval(arg[0], arg[1], arg[2], arg[2]);
 		} else {
+			drawingArea.setColor(Color.pink);
 			drawingArea.fillOval(arg[0], arg[1], arg[2], arg[2]);
+			drawingArea.setColor(Color.black);
+			drawingArea.drawOval(arg[0], arg[1], arg[2], arg[2]);
 		}
 
 		if (arg[4] > 0) {

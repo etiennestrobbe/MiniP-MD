@@ -3,6 +3,7 @@
  */
 package figureFk;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import drawSolution.AbstractSolution;
@@ -18,7 +19,10 @@ public class F2kSolution extends AbstractSolution {
 	 */
 	public F2kSolution(int profondeur) {
 		super(profondeur);
-		// TODO Auto-generated constructor stub
+	}
+
+	public F2kSolution(int profondeur, int fill) {
+		super(profondeur,fill);
 	}
 
 	/*
@@ -44,7 +48,10 @@ public class F2kSolution extends AbstractSolution {
 		if (fill == 0) {
 			drawingArea.drawOval(x, y, rayon, rayon);
 		} else {
+			drawingArea.setColor(Color.green);
 			drawingArea.fillOval(x, y, rayon, rayon);
+			drawingArea.setColor(Color.black);
+			drawingArea.drawOval(x, y, rayon, rayon);
 		}
 
 		if (n > 0) {
