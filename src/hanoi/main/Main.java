@@ -19,6 +19,7 @@ public class Main {
 		System.out.println("Combien de disques ?");
 		Scanner in = new Scanner(System.in);
 		int num = in.nextInt();
+		in.close();
 		
 		Simulation simulation = new Simulation(num);
 		simulation.runSimulation();

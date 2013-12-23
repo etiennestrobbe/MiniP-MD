@@ -1,10 +1,10 @@
 /**
- * Classe héritant de AbstractSolution.
- * Cette classe permet de dessiner une famille de cercle Fk récursivement.
- * La famille est définie comme suit: on obtient Fk+1 à partir de Fk en ajoutant à chaque 
+ * Classe hÃ©ritant de AbstractSolution.
+ * Cette classe permet de dessiner une famille de cercle Fk rÃ©cursivement.
+ * La famille est dÃ©finie comme suit: on obtient Fk+1 Ã  partir de Fk en ajoutant Ã  chaque 
  * plus petit cercle de c de Fk, 2 nouveaux cercles:
- * 		- tangents à c
- * 		- de diamètre la moitié du diamètre de c
+ * 		- tangents Ã  c
+ * 		- de diamÃ¨tre la moitiÃ© du diamÃ©tre de c
  * 		- et tels que le centre de c et d'un des nouveaux cercles sont sur une verticale
  * 		  ou une horizontale
  */
@@ -24,7 +24,7 @@ public class FkSolution extends AbstractSolution {
 	
 	/**
 	 * Constructeur de la classe.
-	 * Le paramètre profondeur représente la profondeur de récursivité du dessin
+	 * Le paramÃ©tre profondeur reprÃ©sente la profondeur de rÃ©cursivitÃ© du dessin
 	 * @param profondeur
 	 */
 
@@ -33,9 +33,9 @@ public class FkSolution extends AbstractSolution {
 	}
 
 	/**
-	 * Méthode récursive pour dessiner la famille Fk de la classe.
+	 * MÃ©thode rÃ©cursive pour dessiner la famille Fk de la classe.
 	 * On dessine deux petit cercles tangents au cercle actuel tout
-	 * en conservant les propriétés de la famille Fk.
+	 * en conservant les propriÃ©tÃ©s de la famille Fk.
 	 * 
 	 * @param drawingArea:object graphique dans lequel on dessine
 	 * @param arg : liste d'arguments
