@@ -12,6 +12,7 @@ import drawSolution.AbstractSolution;
  * @author Jean-Christophe Isoard
  * 
  */
+@SuppressWarnings("serial")
 public class F2kSolution extends AbstractSolution {
 
 	/**
