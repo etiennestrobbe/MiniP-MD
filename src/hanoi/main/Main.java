@@ -2,6 +2,8 @@
  * 
  */
 package hanoi.main;
+import java.util.Scanner;
+
 import hanoi.TraitementRecursif.*;
 
 /**
@@ -14,7 +16,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Simulation simulation = new Simulation(4);
+		System.out.println("Combien de disques ?");
+		Scanner in = new Scanner(System.in);
+		int num = in.nextInt();
+		
+		Simulation simulation = new Simulation(num);
 		simulation.runSimulation();
 	}
 

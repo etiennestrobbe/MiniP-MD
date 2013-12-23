@@ -2,10 +2,7 @@ package hanoi.view;
 
 import hanoi.Element.Disque;
 import hanoi.Element.Plateau;
-import hanoi.Element.Tour;
-
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,12 +10,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * Une vue pour Hanoi, s'adapte au nombre de disques
+ * @author Jean-Christophe Isoard
+ *
+ */
+@SuppressWarnings("serial")
 public class HanoiView extends JFrame {
-	private Dimension dims;
 	private TowersView towersView;
 	private int nbDiscs;
 	

@@ -3,8 +3,6 @@
  */
 package figureFk;
 
-import java.awt.Graphics;
-
 /**
  * @author Etienne STROBBE
  * 

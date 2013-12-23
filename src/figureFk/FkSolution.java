@@ -19,6 +19,7 @@ import drawSolution.AbstractSolution;
  * @version 21/12/2013
  * 
  */
+@SuppressWarnings("serial")
 public class FkSolution extends AbstractSolution {
 	
 	/**
