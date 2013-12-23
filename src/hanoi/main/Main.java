@@ -4,7 +4,7 @@
 package hanoi.main;
 import java.util.Scanner;
 
-import hanoi.TraitementRecursif.*;
+import hanoi.simulation.*;
 
 /**
  * @author Etienne Strobbe
@@ -22,7 +22,8 @@ public class Main {
 		in.close();
 		
 		Simulation simulation = new Simulation(num);
-		simulation.runSimulation();
+		//simulation.runSimulation("recursif");
+		simulation.runSimulation("iteratif");
 	}
 
 }

@@ -3,6 +3,10 @@
  */
 package hanoi.Element;
 
+import hanoi.exception.DisqueTropGrandException;
+import hanoi.exception.TourVideException;
+
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 
 /**
@@ -16,7 +20,7 @@ public class Plateau {
 	public Plateau(int nbDisque){
 		tours = new LinkedList<Tour>();
 		for(int i=0;i<3;i++){
-			Tour t = new Tour();
+			Tour t = new Tour(((char) ('A'+i))+"");
 			tours.add(t);
 		}
 		for(int i=0;i<nbDisque;i++){
@@ -29,17 +33,19 @@ public class Plateau {
 
 	}
 	
-	public void DeplacerDisque(Tour source,Tour destination){
-		Disque tmp = source.retirerDisque();
-		destination.ajouterDisque(tmp);
-	}
-	
-	public String toString(){
-		String res="";
-		for(Tour t:tours){
-			res+=t+"\n\n";
+	public void DeplacerDisque(Tour source, Tour destination) throws DisqueTropGrandException, TourVideException {
+		if(source.getTaille() != 0) {
+			Disque tmp = source.retirerDisque();
+			try {
+				destination.ajouterDisque(tmp);
+				System.out.println(source+" vers "+destination);
+			} catch (DisqueTropGrandException e) {
+				source.ajouterDisque(tmp);
+				throw new DisqueTropGrandException();
+			}
+		} else {
+			throw new TourVideException(source);
 		}
-		return res;
 	}
 	
 	public Tour getTour(int n){

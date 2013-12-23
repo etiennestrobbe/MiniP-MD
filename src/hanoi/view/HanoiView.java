@@ -2,6 +2,8 @@ package hanoi.view;
 
 import hanoi.Element.Disque;
 import hanoi.Element.Plateau;
+import hanoi.Element.Tour;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -39,17 +41,24 @@ public class HanoiView extends JFrame {
 	}
 	
 	public void display(Plateau p) {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		towersView.preparePaint();
 		towersView.blank();
 		if (!this.isVisible())
 			this.setVisible(true);
-		
-		towersView.drawPlateau(Color.red);
+		towersView.drawPlateau(p, Color.red);
 		for(int tour=0; tour<3; tour++) {
-			LinkedList<Disque> discs = p.getTour(tour).getDisques();
-			int e = 0;
-			for(Disque disc:discs) {
-				towersView.drawDisc(tour, e++, disc.getTaille(), Color.blue);
+			if(p.getTour(tour).getTaille() > 0) {
+				LinkedList<Disque> discs = p.getTour(tour).getDisques();
+				int e = 0;
+				for(Disque disc:discs) {
+					towersView.drawDisc(tour, e++, disc.getTaille(), Color.blue);
+				}
 			}
 		}
 		towersView.repaint();
@@ -110,7 +119,7 @@ public class HanoiView extends JFrame {
 		/**
 		 * Paint on grid location on this field in a given color.
 		 */
-		public void drawPlateau(Color color) {
+		public void drawPlateau(Plateau p, Color color) {
 			g.setColor(color);
 			int x = MARGINS;
 			int y = MARGINS;
@@ -120,6 +129,7 @@ public class HanoiView extends JFrame {
 			for(int i=0; i<3; i++) {
 				if(i==0) x += firsttower;
 				else x += spacebetweentowers+firsttower;
+				g.drawString(p.getTour(i).toString(), x-1, y-5);
 				g.fillRect(x, y, TOWER_WIDTH, towerheight);
 				x+=TOWER_WIDTH;
 			}
