@@ -1,15 +1,16 @@
 /**
- * Classe héritant de AbstractSolution.
- * Cette classe permet de dessiner une famille de cercle Fk récursivement.
- * La famille est définie comme suit: on obtient Fk+1 à partir de Fk en ajoutant à chaque 
+ * Classe hÃ©ritant de AbstractSolution.
+ * Cette classe permet de dessiner une famille de cercle Fk rÃ©cursivement.
+ * La famille est dÃ©finie comme suit: on obtient Fk+1 Ã  partir de Fk en ajoutant Ã  chaque 
  * plus petit cercle de c de Fk, 2 nouveaux cercles:
- * 		- tangents à c
- * 		- de diamètre la moitié du diamètre de c
+ * 		- tangents Ã  c
+ * 		- de diamÃ¨tre la moitiÃ© du diamÃ©tre de c
  * 		- et tels que le centre de c et d'un des nouveaux cercles sont sur une verticale
  * 		  ou une horizontale
  */
 package figureFk;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import drawSolution.AbstractSolution;
@@ -19,22 +20,27 @@ import drawSolution.AbstractSolution;
  * @version 21/12/2013
  * 
  */
+@SuppressWarnings("serial")
 public class FkSolution extends AbstractSolution {
 	
 	/**
 	 * Constructeur de la classe.
-	 * Le paramètre profondeur représente la profondeur de récursivité du dessin
+	 * Le paramÃ©tre profondeur reprÃ©sente la profondeur de rÃ©cursivitÃ© du dessin
 	 * @param profondeur
 	 */
 
 	public FkSolution(int profondeur) {
-		super(profondeur);
+		super(-0.25,-0.25,profondeur);
+	}
+	
+	public FkSolution(int profondeur, int fill) {
+		super(-0.25,-0.25,profondeur,fill);
 	}
 
 	/**
-	 * Méthode récursive pour dessiner la famille Fk de la classe.
+	 * MÃ©thode rÃ©cursive pour dessiner la famille Fk de la classe.
 	 * On dessine deux petit cercles tangents au cercle actuel tout
-	 * en conservant les propriétés de la famille Fk.
+	 * en conservant les propriÃ©tÃ©s de la famille Fk.
 	 * 
 	 * @param drawingArea:object graphique dans lequel on dessine
 	 * @param arg : liste d'arguments
@@ -47,7 +53,10 @@ public class FkSolution extends AbstractSolution {
 		if (arg[3] == 0) {
 			drawingArea.drawOval(arg[0], arg[1], arg[2], arg[2]);
 		} else {
+			drawingArea.setColor(Color.pink);
 			drawingArea.fillOval(arg[0], arg[1], arg[2], arg[2]);
+			drawingArea.setColor(Color.black);
+			drawingArea.drawOval(arg[0], arg[1], arg[2], arg[2]);
 		}
 
 		if (arg[4] > 0) {
