@@ -21,9 +21,7 @@ public class Main {
 		int num = in.nextInt();
 		in.close();
 		
-		Simulation simulation = new Simulation(num);
-		//simulation.runSimulation("recursif");
-		simulation.runSimulation("iteratif");
+		new Simulation(num).runSimulation("iteratif");
+		new Simulation(num).runSimulation("recursif");
 	}
-
 }
