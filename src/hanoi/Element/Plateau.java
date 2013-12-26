@@ -22,7 +22,7 @@ public class Plateau {
 			Tour t = new Tour(((char) ('A'+i))+"");
 			tours.add(t);
 		}
-		for(int i=1;i<nbDisque;i++){
+		for(int i=0;i<nbDisque;i++){
 			Disque d = new Disque(i+1);
 			tours.get(0).ajouterDisqueDebut(d);
 		}
