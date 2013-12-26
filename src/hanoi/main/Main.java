@@ -22,8 +22,8 @@ public class Main {
 		in.close();
 		
 		Simulation simulation = new Simulation(num);
-		//simulation.runSimulation("recursif");
-		simulation.runSimulation("iteratif");
+		simulation.runSimulation("recursif");
+		//simulation.runSimulation("iteratif");
 	}
 
 }
