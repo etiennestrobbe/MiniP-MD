@@ -2,6 +2,7 @@ package figureFk;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Shape;
 
@@ -30,140 +31,70 @@ public class F4kSolution extends AbstractSolution {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			position = 0;
 		}
-/*/		if (n > 0) {
-	       int nouveauRayon = d / 2;
-	       // à gauche
-	       if (position != 2) // si on est pas à droite
-	         drawSolutionk(drawingArea, x - nouveauRayon, y + nouveauRayon,
-	             nouveauRayon, fill, n - 1, 1);
-	       // à droite
-	       if (position != 1) // si on est pas à gauche
-	         drawSolutionk(drawingArea, x + d, y, nouveauRayon, fill, n - 1,
-	             2);
-	       // en haut
-	       if (position != 4) // si on est pas en bas
-	         drawSolutionk(drawingArea, x, y - nouveauRayon, nouveauRayon,
-	             fill, n - 1, 3);
-	       // en bas
-	       if (position != 3) // si on est pas en haut
-	         drawSolutionk(drawingArea, x + nouveauRayon, y + d,
-	             nouveauRayon, fill, n - 1, 4);
-	     }
-/*/
+		drawingArea.setColor(Color.pink);
+		drawingArea.fillPolygon(createStar(x, y, n+2, d, 0));
+		drawingArea.setColor(Color.black);
+		drawingArea.drawRect(x, y, d, d);
 		if (n > 0) {
-			double teta;
-			int r=d;
-			teta = (2*Math.PI);
-			int nouveauRayon = d / 2;
-			// Ã  gauche
-			if (position != 2) { // si on est pas Ã  droite
-				int newX = (int)((x-nouveauRayon)-r*Math.round(Math.cos(teta)));
-				int newY = (int)((y+nouveauRayon/4)-r*Math.round(Math.sin(teta)));
-				drawSolutionk(drawingArea, newX, newY, nouveauRayon, fill, n - 1, 1);
+			if(position !=3){ // si on est pas en BD
+				drawSolutionk(drawingArea, x - d/2, y-d/2,d/2, fill, n - 1, 1);
 			}
-			// Ã  droite
-			if (position != 1) { // si on est pas Ã  gauche
-				int newX = (int)((x+2*nouveauRayon)+r*Math.round(Math.cos(teta)));
-				int newY = (int)((y+nouveauRayon)+r*Math.round(Math.sin(teta)));
-				drawSolutionk(drawingArea, newX, newY, nouveauRayon, fill, n - 1, 2);
+			if(position !=4){// si on est pas en HD
+				drawSolutionk(drawingArea, x - d/2, y + d, d/2, fill, n - 1,2);
 			}
-			// en haut
-			if (position != 4) {// si on est pas en bas
-				int newX = (int)((x)+r*Math.round(Math.cos(2*teta)));
-				int newY = (int)((y-nouveauRayon)+r*Math.round(Math.sin(teta)));
-				drawSolutionk(drawingArea, newX, newY, nouveauRayon, fill, n - 1, 3);
+			if(position !=1){// si on est pas en HG
+				drawSolutionk(drawingArea, x+d, y+ d, d/2,fill, n - 1, 3);
 			}
-			// en bas
-			if (position != 3) {// si on est pas en haut
-				int newX = (int)((x+nouveauRayon)-r*Math.round(Math.cos(teta)));
-				int newY = (int)((y+2*nouveauRayon)+r*Math.round(Math.sin(2*teta)));
-				drawSolutionk(drawingArea, newX, newY, nouveauRayon, fill, n - 1, 4);
+			if(position !=2){// si on est pas en BG
+				drawSolutionk(drawingArea, x + d, y - d/2,d/2, fill, n - 1, 4);
 			}
 		}
-/**/
 
-		drawStar(drawingArea, x, y, d);
-
-	}
-	
-	private void pivotStar(int...arg ){
-		//TODO faire pivoter une etoile
-	}
-/**
- * Fonction private qui dessine une etoile sur l'object graphique donné en argument.
- * @param drawingArea
- * @param arg
- */
-	private void drawStar(Graphics drawingArea, int... arg) {
-		int x = arg[0];
-		int y = arg[1];
-		int d = arg[2];
 		
-		// on cree les coordonnees des deux pentagones
-		int[] xGpoints = createCoordinatePent("BIG",x,y,d)[0];
-		int[] yGpoints = createCoordinatePent("BIG",x,y,d)[1];
-		int[] xPpoints = createCoordinatePent("SMALL",x,y,d)[0];
-		int[] yPpoints = createCoordinatePent("SMALL",x,y,d)[1];
-
-		// on cree les coordonnes de l'etoile
-		int[] xEtoile = createCoordinateStar(xGpoints,yGpoints,xPpoints,yPpoints)[0];
-		int[] yEtoile = createCoordinateStar(xGpoints,yGpoints,xPpoints,yPpoints)[1];
-		
-		// on dessine l'etoile
-		drawingArea.setColor(Color.pink);
-		drawingArea.fillPolygon(xGpoints, yGpoints, 5);
-		drawingArea.setColor(Color.yellow);
-		drawingArea.fillPolygon(xEtoile, yEtoile, 10);
-		drawingArea.setColor(Color.gray);
-		drawingArea.fillPolygon(xPpoints, yPpoints, 5);
 	}
-	
+
 	/**
-	 * Fonction private qui permet de calculer les coordonnées pour dessiner une étoile a partir de coordonnées de deux pentagones.
+	 * Fonction private qui permet de calculer les coordonnï¿½es pour dessiner une
+	 * ï¿½toile a partir de coordonnï¿½es de deux pentagones.
+	 * 
 	 * @param xGpoints
 	 * @param yGpoints
 	 * @param xPpoints
 	 * @param yPpoints
-	 * @return un tableau de coordonnées
+	 * @return un tableau de coordonnï¿½es
 	 */
-	private int[][] createCoordinateStar(int[] xGpoints ,int[] yGpoints,int[] xPpoints, int[] yPpoints){
-		int [][] res = new int [2][10];
-		int[] xEtoile = new int[] { xGpoints[0], xPpoints[3], xGpoints[1],
-				xPpoints[4], xGpoints[2], xPpoints[0], xGpoints[3],
-				xPpoints[1], xGpoints[4], xPpoints[2] };
-		int[] yEtoile = new int[] { yGpoints[0], yPpoints[3], yGpoints[1],
-				yPpoints[4], yGpoints[2], yPpoints[0], yGpoints[3],
-				yPpoints[1], yGpoints[4], yPpoints[2] };
-		res[0]=xEtoile;
-		res[1]=yEtoile;
-		return res;
+	private Polygon createStar(int x, int y, int n, int d, double teta) {
+		Polygon grandP = createRegularConvexePolygon(x, y, n, d, teta);
+		Polygon petitP = createRegularConvexePolygon(x + d / 4, y + d / 4, n,
+				d / 2, teta + Math.PI / n);
+		Polygon star = new Polygon();
+
+		for (int i = 0; i < n; i++) {
+			star.addPoint(grandP.xpoints[i], grandP.ypoints[i]);
+			star.addPoint(petitP.xpoints[i], petitP.ypoints[i]);
+		}
+
+		return star;
 	}
-	
+
 	/**
-	 * * Fonction private qui permet de calculer les coordonnées d'un pentagone
+	 * * Fonction private qui permet de calculer les coordonnï¿½es d'un pentagone
+	 * 
 	 * @param type
 	 * @param arg
-	 * @return un tableau de coordonnées
+	 * @return un tableau de coordonnï¿½es
 	 */
-	private int[][] createCoordinatePent(String type,int... arg){
-		int x = arg[0];
-		int y = arg[1];
-		int d = arg[2];
-		int [][] res = new int[2][5];
-		int xG = x + d / 2; // coordonnÃ©e x du point supÃ©rieur du grand
-		// pentagone
-		int yG = (type=="BIG")?y:y + d / 2 + d / 4; // coordonnÃ©e y du point supÃ©rieur du grand pentagone
-		int coeff1 = (type=="BIG")?2:4;
-		int coeff2 = (type=="BIG")?1:-1;
+	private Polygon createRegularConvexePolygon(int x, int y, int n, int d,
+			double teta) {
+		int[] xs = new int[n];
+		int[] ys = new int[n];
+		x = x + d / 2;
 
-		int[] xGpoints = new int[5];
-		int[] yGpoints = new int[5];
-		for (int i = 0; i < 5; i++) {
-			xGpoints[i] = (int) (xG - coeff2*d / coeff1 * Math.sin(i * 2 * Math.PI / 5));
-			yGpoints[i] = (int) (yG + coeff2*d / coeff1 * (1 - Math.cos(i * 2 * Math.PI / 5)));
+		for (int i = 0; i < n; i++) {
+			xs[i] = (int) (x - (d/2) * Math.sin(teta + (2 * i * Math.PI / n)));
+			ys[i] = (int) (y + (d/2) * (1 - Math.cos(teta + (2 * i * Math.PI / n))));
+
 		}
-		res[0] = xGpoints;
-		res[1] = yGpoints;
-		return res;
+		return new Polygon(xs, ys, n);
 	}
 }

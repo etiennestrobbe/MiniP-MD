@@ -61,7 +61,7 @@ public abstract class AbstractSolution extends Frame {
 		// mettre ici un appel de drawSolutionk avec une liste d'arguments
 		// adaptés, par exemple :
 		int rayonOriginel = frameWidth/4;
-		drawSolutionk(g2d, frameWidth / 2 - rayonOriginel/2, frameHeight / 2 - rayonOriginel/2, frameWidth / 8, fill,
+		drawSolutionk(g2d, frameWidth / 2 - rayonOriginel/2, frameHeight / 2 - rayonOriginel/2, rayonOriginel, fill,
 				profondeur-1);
 	}
 
