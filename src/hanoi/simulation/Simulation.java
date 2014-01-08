@@ -30,6 +30,8 @@ public class Simulation {
 
 		if (mode.contains("cursif"))
 			HanoiRecursif(nbDisques, A, C, B);
+		else if(mode.contains("cycle"))
+			hanoiSensHoraire(nbDisques, A, B , C);
 		else
 			HanoiIteratif(A, B, C);
 	}
@@ -55,6 +57,27 @@ public class Simulation {
 			}
 
 			HanoiRecursif(nbDisques - 1, I, A, D);
+		}
+	}
+	
+	private void hanoiSensHoraire(int nbDisques, Tour A, Tour B, Tour C){
+		if (nbDisques != 0) {
+		hanoiSensHoraire(nbDisques-1,A,C,B);
+		// move disc n  de A->B
+		deplacerDisqueEntreDeuxTours(A,B);
+		hanoiSensAntiHoraire(nbDisques-1,C,A,B);
+		// move disc n  de B->C
+		deplacerDisqueEntreDeuxTours(B,C);
+		hanoiSensHoraire(nbDisques-1,A,C,B);
+		}
+	}
+	
+	private void hanoiSensAntiHoraire(int nbDisques, Tour A, Tour B, Tour C){
+		if (nbDisques != 0) {
+		hanoiSensHoraire(nbDisques-1,A,B,C);
+		// move disc n de D->A
+		deplacerDisqueEntreDeuxTours(A,C);
+		hanoiSensHoraire(nbDisques-1,B,C,A);
 		}
 	}
 
