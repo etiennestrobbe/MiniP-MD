@@ -37,7 +37,7 @@ public class F4kSolution extends AbstractSolution {
 		drawingArea.drawRect(x, y, d, d);
 		if (n > 0) {
 			if(position !=3){ // si on est pas en BD
-				drawSolutionk(drawingArea, x - d/2, y-d/2,d/2, fill, n - 1, 1);
+				drawSolutionk(drawingArea, x - d/2, y-d/2,d-2*d/3, fill, n - 1, 1);
 			}
 			if(position !=4){// si on est pas en HD
 				drawSolutionk(drawingArea, x - d/2, y + d, d/2, fill, n - 1,2);
