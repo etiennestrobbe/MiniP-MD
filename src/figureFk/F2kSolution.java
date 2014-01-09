@@ -23,7 +23,7 @@ public class F2kSolution extends AbstractSolution {
 	}
 
 	public F2kSolution(int profondeur, int fill) {
-		super(profondeur,fill);
+		super(profondeur, fill);
 	}
 
 	/*
@@ -42,7 +42,7 @@ public class F2kSolution extends AbstractSolution {
 		int position;
 		try {
 			position = arg[5];
-		} catch(ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			position = 0;
 		}
 
@@ -63,16 +63,16 @@ public class F2kSolution extends AbstractSolution {
 						/ 2, nouveauRayon, fill, n - 1, 1);
 			// cercle à droite
 			if (position != 1) // si on est pas à gauche
-			drawSolutionk(drawingArea, x + rayon, y + nouveauRayon / 2,
-					nouveauRayon, fill, n - 1, 2);
+				drawSolutionk(drawingArea, x + rayon, y + nouveauRayon / 2,
+						nouveauRayon, fill, n - 1, 2);
 			// cercle en haut
 			if (position != 4) // si on est pas en bas
-			drawSolutionk(drawingArea, x + nouveauRayon / 2, y - nouveauRayon,
-					nouveauRayon, fill, n - 1, 3);
+				drawSolutionk(drawingArea, x + nouveauRayon / 2, y
+						- nouveauRayon, nouveauRayon, fill, n - 1, 3);
 			// cercle en bas
 			if (position != 3) // si on est pas en haut
-			drawSolutionk(drawingArea, x + nouveauRayon / 2, y + rayon,
-					nouveauRayon, fill, n - 1, 4);
+				drawSolutionk(drawingArea, x + nouveauRayon / 2, y + rayon,
+						nouveauRayon, fill, n - 1, 4);
 		}
 	}
 }

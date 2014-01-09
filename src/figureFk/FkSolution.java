@@ -22,31 +22,34 @@ import drawSolution.AbstractSolution;
  */
 @SuppressWarnings("serial")
 public class FkSolution extends AbstractSolution {
-	
+
 	/**
-	 * Constructeur de la classe.
-	 * Le paramétre profondeur représente la profondeur de récursivité du dessin
+	 * Constructeur de la classe. Le paramétre profondeur représente la
+	 * profondeur de récursivité du dessin
+	 * 
 	 * @param profondeur
 	 */
 
 	public FkSolution(int profondeur) {
-		super(-0.25,-0.25,profondeur);
+		super(-0.25, -0.25, profondeur);
 	}
-	
+
 	public FkSolution(int profondeur, int fill) {
-		super(-0.25,-0.25,profondeur,fill);
+		super(-0.25, -0.25, profondeur, fill);
 	}
 
 	/**
-	 * Méthode récursive pour dessiner la famille Fk de la classe.
-	 * On dessine deux petit cercles tangents au cercle actuel tout
-	 * en conservant les propriétés de la famille Fk.
+	 * Méthode récursive pour dessiner la famille Fk de la classe. On dessine
+	 * deux petit cercles tangents au cercle actuel tout en conservant les
+	 * propriétés de la famille Fk.
 	 * 
-	 * @param drawingArea:object graphique dans lequel on dessine
-	 * @param arg : liste d'arguments
+	 * @param drawingArea
+	 *            :object graphique dans lequel on dessine
+	 * @param arg
+	 *            : liste d'arguments
 	 * 
 	 * @see drawSolution.AbstractSolution#drawSolutionk(java.awt.Graphics,
-	 * int[])
+	 *      int[])
 	 */
 	@Override
 	public void drawSolutionk(Graphics drawingArea, int... arg) {

@@ -25,12 +25,12 @@ public abstract class AbstractSolution extends Frame {
 		addWindowListener(new WindowHandler()); // pour fermer
 		setTitle("Dessins recursifs au niveau : " + profondeur);
 	}
-	
+
 	public AbstractSolution(int profondeur, int fill) {
 		this(profondeur);
 		this.fill = fill;
 	}
-	
+
 	public AbstractSolution(double dx, double dy, int profondeur) {
 		this(profondeur);
 		this.dx = dx;
@@ -38,10 +38,10 @@ public abstract class AbstractSolution extends Frame {
 	}
 
 	public AbstractSolution(double dx, double dy, int profondeur, int fill) {
-		this(dx,dy,profondeur);
+		this(dx, dy, profondeur);
 		this.fill = fill;
 	}
-	
+
 	private class WindowHandler extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
@@ -53,16 +53,19 @@ public abstract class AbstractSolution extends Frame {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		int frameHeight = getSize().height+10; // taille de la fenêtre avec les bordures
+		int frameHeight = getSize().height + 10; // taille de la fenêtre avec
+													// les bordures
 		int frameWidth = getSize().width;
 		g2d.setColor(Color.black); // La couleur avec laquelle on va dessiner
-		g2d.translate(dx*frameWidth, dy*frameHeight); //pour déplacer l'origine si besoin
+		g2d.translate(dx * frameWidth, dy * frameHeight); // pour déplacer
+															// l'origine si
+															// besoin
 
 		// mettre ici un appel de drawSolutionk avec une liste d'arguments
 		// adaptés, par exemple :
-		int rayonOriginel = frameWidth/4;
-		drawSolutionk(g2d, frameWidth / 2 - rayonOriginel/2, frameHeight / 2 - rayonOriginel/2, rayonOriginel, fill,
-				profondeur-1);
+		int rayonOriginel = frameWidth / 4;
+		drawSolutionk(g2d, frameWidth / 2 - rayonOriginel / 2, frameHeight / 2
+				- rayonOriginel / 2, rayonOriginel, fill, profondeur - 1);
 	}
 
 	/**

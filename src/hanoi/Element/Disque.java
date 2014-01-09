@@ -28,13 +28,4 @@ public class Disque {
 	public boolean estPlusGrand(Disque d) {
 		return (this.taille > d.taille);
 	}
-
-	public String toString() {
-		String res = "";
-		for (int i = 0; i < taille; i++) {
-			res += "-";
-		}
-		return res;
-	}
-
 }

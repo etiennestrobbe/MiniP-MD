@@ -74,6 +74,14 @@ public class Tour {
 	}
 
 	public boolean estVide() {
-		return Math.abs(taille) == 0;
+		return taille == 0;
+	}
+
+	public Disque getDisque(int n) {
+		try {
+			return disques.get(n);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 }
