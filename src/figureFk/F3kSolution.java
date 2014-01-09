@@ -46,12 +46,12 @@ public class F3kSolution extends AbstractSolution {
 						nouveauRayon, fill, n - 1, 1);
 			// à droite
 			if (position != 1) // si on est pas à gauche
-				drawSolutionk(drawingArea, x + rayon, y,
-						nouveauRayon, fill, n - 1, 2);
+				drawSolutionk(drawingArea, x + rayon, y, nouveauRayon, fill,
+						n - 1, 2);
 			// en haut
 			if (position != 4) // si on est pas en bas
-				drawSolutionk(drawingArea, x, y
-						- nouveauRayon, nouveauRayon, fill, n - 1, 3);
+				drawSolutionk(drawingArea, x, y - nouveauRayon, nouveauRayon,
+						fill, n - 1, 3);
 			// en bas
 			if (position != 3) // si on est pas en haut
 				drawSolutionk(drawingArea, x + nouveauRayon, y + rayon,

@@ -16,7 +16,7 @@ public class Simulation {
 	private Plateau plateau;
 	private int nbDisques;
 	private HanoiView view;
-	
+
 	public Simulation(int n) {
 		nbDisques = n;
 		view = new HanoiView(nbDisques);
@@ -30,19 +30,23 @@ public class Simulation {
 
 		if (mode.contains("cursif"))
 			HanoiRecursif(nbDisques, A, C, B);
-		else if(mode.contains("cycle"))
-			hanoiSensHoraire(nbDisques, A, B , C);
+		else if (mode.contains("cycle"))
+			hanoiSensHoraire(nbDisques, A, B, C);
 		else
 			HanoiIteratif(A, B, C);
-		System.out.println(plateau.getDeplacements()+" déplacements");
+		System.out.println(plateau.getDeplacements() + " déplacements");
 	}
 
 	/**
 	 * Résolution des tour de Hanoï en récursif
+	 * 
 	 * @param nbDisques
-	 * @param D La tour de départ
-	 * @param A La tour d'arrivée
-	 * @param I La tour intermédiaire
+	 * @param D
+	 *            La tour de départ
+	 * @param A
+	 *            La tour d'arrivée
+	 * @param I
+	 *            La tour intermédiaire
 	 * @author Etienne Strobbe
 	 */
 	private void HanoiRecursif(int nbDisques, Tour D, Tour A, Tour I) {
@@ -60,35 +64,39 @@ public class Simulation {
 			HanoiRecursif(nbDisques - 1, I, A, D);
 		}
 	}
-	
-	private void hanoiSensHoraire(int nbDisques, Tour A, Tour B, Tour C){
-		//TODO
+
+	private void hanoiSensHoraire(int nbDisques, Tour A, Tour B, Tour C) {
+		// TODO
 	}
-	
-	private void hanoiSensAntiHoraire(int nbDisques, Tour A, Tour B, Tour C){
-		//TODO
+
+	private void hanoiSensAntiHoraire(int nbDisques, Tour A, Tour B, Tour C) {
+		// TODO
 	}
 
 	/**
 	 * Résolution des tour de Hanoi en itératif
-	 * @param D La tour de départ
-	 * @param I La tour intermédiaire
-	 * @param A La tour d'arrivée
+	 * 
+	 * @param D
+	 *            La tour de départ
+	 * @param I
+	 *            La tour intermédiaire
+	 * @param A
+	 *            La tour d'arrivée
 	 * @author Jean-Christophe Isoard
 	 */
 	public void HanoiIteratif(Tour D, Tour I, Tour A) {
 		view.display(plateau);
-		
+
 		Tour tourPetitDisque = D;
 		Tour deuxieme = I;
 		Tour troisieme = A;
-		
+
 		// si le nombre de disque est impair, on doit tourner dans l'autre sens
-		if(!nbDisquesPair()) {
+		if (!nbDisquesPair()) {
 			deuxieme = A;
 			troisieme = I;
 		}
-		
+
 		while (A.getTaille() != nbDisques) {
 			// deplace le petit disque
 			try {
@@ -102,9 +110,10 @@ public class Simulation {
 			deuxieme = troisieme;
 			troisieme = tourPetitDisque;
 			tourPetitDisque = temp;
-				
+
 			// deplace un autre disque
-			if(A.getTaille() != nbDisques) deplacerDisqueEntreDeuxTours(deuxieme, troisieme);
+			if (A.getTaille() != nbDisques)
+				deplacerDisqueEntreDeuxTours(deuxieme, troisieme);
 		}
 	}
 
@@ -119,13 +128,14 @@ public class Simulation {
 		try {
 			plateau.DeplacerDisque(A, B);
 		} catch (DisqueTropGrandException | TourVideException e1) {
-			System.out.println(A+" vers "+B+" = Déplacement impossible");
+			System.out.println(A + " vers " + B + " = Déplacement impossible");
 			try {
 				plateau.DeplacerDisque(B, A);
 			} catch (DisqueTropGrandException | TourVideException e2) {
 				System.err.print("Action impossible: ");
 				if (e2 instanceof TourVideException)
-					System.err.println("Vous avez essayé de déplacer un disque entre deux tour vides");
+					System.err
+							.println("Vous avez essayé de déplacer un disque entre deux tour vides");
 			}
 		}
 		view.display(plateau);

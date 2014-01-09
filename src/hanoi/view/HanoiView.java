@@ -13,38 +13,39 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 /**
  * Une vue pour Hanoi, s'adapte au nombre de disques
+ * 
  * @author Jean-Christophe Isoard
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class HanoiView extends JFrame {
 	private TowersView towersView;
 	private int nbDiscs;
-	
+
 	public HanoiView(int nbDiscs) {
 		this.nbDiscs = nbDiscs;
-		
+
 		towersView = new TowersView();
 		this.add(towersView);
-		
+
 		this.pack();
 		this.addWindowListener(new WindowHandler());
 	}
-	
+
 	private class WindowHandler extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
 		}
 	}
-	
+
 	public void display(Plateau p) {
 		System.out.println(p);
 		try {
-			Thread.sleep(200);
+			Thread.sleep(600);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		towersView.preparePaint();
@@ -52,19 +53,20 @@ public class HanoiView extends JFrame {
 		if (!this.isVisible())
 			this.setVisible(true);
 		towersView.drawPlateau(p, Color.red);
-		for(int tour=0; tour<3; tour++) {
-			if(p.getTour(tour).getTaille() > 0) {
+		for (int tour = 0; tour < 3; tour++) {
+			if (p.getTour(tour).getTaille() > 0) {
 				LinkedList<Disque> discs = p.getTour(tour).getDisques();
 				int e = 0;
-				for(Disque disc:discs) {
-					towersView.drawDisc(tour, e++, disc.getTaille(), Color.blue);
+				for (Disque disc : discs) {
+					towersView
+							.drawDisc(tour, e++, disc.getTaille(), Color.blue);
 				}
 			}
 		}
 		towersView.repaint();
-		
+
 	}
-	
+
 	private class TowersView extends JPanel {
 		private static final int DEFAULT_BASE_WIDTH = 400;
 		private static final int BASE_HEIGHT = 20;
@@ -79,7 +81,7 @@ public class HanoiView extends JFrame {
 		private int basewidth;
 		private int firsttower;
 		private int discsizeRatio;
-		
+
 		/**
 		 * Create a new FieldView component.
 		 */
@@ -96,7 +98,8 @@ public class HanoiView extends JFrame {
 		 * Tell the GUI manager how big we would like to be.
 		 */
 		public Dimension getPreferredSize() {
-			return new Dimension(DEFAULT_BASE_WIDTH, nbDiscs*(DISC_HEIGHT+1)+BASE_HEIGHT+MARGINS);
+			return new Dimension(DEFAULT_BASE_WIDTH, nbDiscs
+					* (DISC_HEIGHT + 1) + BASE_HEIGHT + MARGINS);
 		}
 
 		/**
@@ -108,13 +111,13 @@ public class HanoiView extends JFrame {
 				size = getSize();
 				towersImage = towersView.createImage(size.width, size.height);
 				g = towersImage.getGraphics();
-				
-				towerheight = (int) (size.getHeight()-(BASE_HEIGHT+MARGINS));
-				basewidth = (int) (size.getWidth()-MARGINS*2);
 
-				firsttower = (basewidth-TOWER_WIDTH*3)/8;
-				spacebetweentowers = (basewidth-TOWER_WIDTH*3)/4;
-				discsizeRatio = spacebetweentowers/nbDiscs;
+				towerheight = (int) (size.getHeight() - (BASE_HEIGHT + MARGINS));
+				basewidth = (int) (size.getWidth() - MARGINS * 2);
+
+				firsttower = (basewidth - TOWER_WIDTH * 3) / 8;
+				spacebetweentowers = (basewidth - TOWER_WIDTH * 3) / 4;
+				discsizeRatio = spacebetweentowers / nbDiscs;
 			}
 		}
 
@@ -125,37 +128,41 @@ public class HanoiView extends JFrame {
 			g.setColor(color);
 			int x = MARGINS;
 			int y = MARGINS;
-			// draw base 
+			// draw base
 			g.fillRect(x, y + towerheight, basewidth, BASE_HEIGHT);
 			// draw towers
-			for(int i=0; i<3; i++) {
-				if(i==0) x += firsttower;
-				else x += spacebetweentowers+firsttower;
-				g.drawString(p.getTour(i).toString(), x-1, y-5);
+			for (int i = 0; i < 3; i++) {
+				if (i == 0)
+					x += firsttower;
+				else
+					x += spacebetweentowers + firsttower;
+				g.drawString(p.getTour(i).toString(), x - 1, y - 5);
 				g.fillRect(x, y, TOWER_WIDTH, towerheight);
-				x+=TOWER_WIDTH;
+				x += TOWER_WIDTH;
 			}
 		}
-		
+
 		public void drawDisc(int tour, int etage, int size, Color color) {
 			g.setColor(color);
 			int x = MARGINS;
 			int y = towerheight;
-			
-			int discsize = size*discsizeRatio;
-			
-			if(tour==0) {
-				x+=firsttower+tour*TOWER_WIDTH-discsize/2+TOWER_WIDTH/2;
+
+			int discsize = size * discsizeRatio;
+
+			if (tour == 0) {
+				x += firsttower + tour * TOWER_WIDTH - discsize / 2
+						+ TOWER_WIDTH / 2;
 			} else {
-				x+=(tour+1)*spacebetweentowers+tour*TOWER_WIDTH-discsize/2+TOWER_WIDTH/2;
+				x += (tour + 1) * spacebetweentowers + tour * TOWER_WIDTH
+						- discsize / 2 + TOWER_WIDTH / 2;
 			}
-			if(tour==2) {
-				x+=firsttower;
+			if (tour == 2) {
+				x += firsttower;
 			}
-			y -= (etage-1)*(DISC_HEIGHT+1);
-			
-			//g.fillRect(x, y, discsize, DISC_HEIGHT);
-			
+			y -= (etage - 1) * (DISC_HEIGHT + 1);
+
+			// g.fillRect(x, y, discsize, DISC_HEIGHT);
+
 			int[] xpts = new int[] { x + DISC_HEIGHT / 2, x,
 					x + DISC_HEIGHT / 2, x + discsize - DISC_HEIGHT / 2,
 					x + discsize, x + discsize - DISC_HEIGHT / 2 };

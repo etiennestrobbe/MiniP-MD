@@ -39,10 +39,16 @@ public class Plateau {
 	/**
 	 * Permet de déplacer un disque d'une tour à l'autre<br />
 	 * Renvoie une exception si le déplacement est illégal.
-	 * @param source Tour source
-	 * @param destination Tour de destination
-	 * @throws DisqueTropGrandException Envoyée si le disque supérieur de la tour source est trop grand par rapport au disque de la tour de destination
-	 * @throws TourVideException Envoyée si la tour source est vide
+	 * 
+	 * @param source
+	 *            Tour source
+	 * @param destination
+	 *            Tour de destination
+	 * @throws DisqueTropGrandException
+	 *             Envoyée si le disque supérieur de la tour source est trop
+	 *             grand par rapport au disque de la tour de destination
+	 * @throws TourVideException
+	 *             Envoyée si la tour source est vide
 	 */
 	public void DeplacerDisque(Tour source, Tour destination)
 			throws DisqueTropGrandException, TourVideException {
@@ -63,7 +69,9 @@ public class Plateau {
 
 	/**
 	 * Permet de récupérer une tour
-	 * @param n Numéro
+	 * 
+	 * @param n
+	 *            Numéro
 	 * @return Tour
 	 */
 	public Tour getTour(int n) {
@@ -72,51 +80,51 @@ public class Plateau {
 
 	/**
 	 * Renvoie la valeur totale de déplacements effectués sur le plateau
+	 * 
 	 * @return
 	 */
 	public int getDeplacements() {
 		return deplacements;
 	}
-	
+
 	@Override
 	public String toString() {
 		String plateau = "";
 		// ligne de base
 		String basetour = "#";
-		for(int i=0; i<nbDisques; i++) {
-			basetour = "#"+basetour+"#";
+		for (int i = 0; i < nbDisques; i++) {
+			basetour = "#" + basetour + "#";
 		}
-		
+
 		String noDisque = "|";
-		for(int i=0; i<nbDisques; i++) {
-			noDisque = " "+noDisque+" ";
+		for (int i = 0; i < nbDisques; i++) {
+			noDisque = " " + noDisque + " ";
 		}
-		
-		for(int i=nbDisques-1; i>=0; i--) {
+
+		for (int i = nbDisques - 1; i >= 0; i--) {
 			String tourUn = noDisque;
 			String tourDeux = noDisque;
 			String tourTrois = noDisque;
-			if(tours.get(0).getDisque(i) != null)
+			if (tours.get(0).getDisque(i) != null)
 				tourUn = dessineDisque(tours.get(0).getDisque(i), nbDisques);
-			if(tours.get(1).getDisque(i) != null)
+			if (tours.get(1).getDisque(i) != null)
 				tourDeux = dessineDisque(tours.get(1).getDisque(i), nbDisques);
-			if(tours.get(2).getDisque(i) != null)
+			if (tours.get(2).getDisque(i) != null)
 				tourTrois = dessineDisque(tours.get(2).getDisque(i), nbDisques);
-			plateau += tourUn+tourDeux+tourTrois+"\n";
+			plateau += tourUn + tourDeux + tourTrois + "\n";
 		}
-		
-		
-		plateau += basetour+basetour+basetour;
+
+		plateau += basetour + basetour + basetour;
 		return plateau;
 	}
-	
+
 	private String dessineDisque(Disque d, int plusGrand) {
 		String res = "-";
-		for(int i = 1; i < d.getTaille(); i++) {
-			res = "-"+res+"-";
+		for (int i = 1; i < d.getTaille(); i++) {
+			res = "-" + res + "-";
 		}
-		for(int i = 0; i<=plusGrand-d.getTaille(); i++) {
-			res = " "+res+" ";
+		for (int i = 0; i <= plusGrand - d.getTaille(); i++) {
+			res = " " + res + " ";
 		}
 		return res;
 	}
