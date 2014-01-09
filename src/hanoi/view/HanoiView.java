@@ -40,6 +40,7 @@ public class HanoiView extends JFrame {
 	}
 	
 	public void display(Plateau p) {
+		System.out.println(p);
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {

@@ -77,10 +77,11 @@ public class Tour {
 		return taille == 0;
 	}
 	
-	public void displayTower(int tailleTige) {
-		for(int i=0; i<tailleTige; i++) {
-			System.out.println(disques.get(i));
+	public Disque getDisque(int n) {
+		try {
+			return disques.get(n);
+		} catch(IndexOutOfBoundsException e) {
+			return null;
 		}
-		System.out.print("#");
 	}
 }
