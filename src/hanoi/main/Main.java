@@ -20,9 +20,9 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		int num = in.nextInt();
 		in.close();
-//		new Simulation(num).runSimulation("iteratif");
+		new Simulation(num).runSimulation("iteratif");
 //		new Simulation(num).runSimulation("recursif");	
-		new Simulation(num).runSimulation("cycle");
+//		new Simulation(num).runSimulation("cycle");
 
 	}
 }

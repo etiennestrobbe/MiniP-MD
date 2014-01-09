@@ -15,6 +15,7 @@ import java.util.LinkedList;
 public class Plateau {
 	
 	private LinkedList<Tour> tours;
+	private int deplacements;
 	
 	public Plateau(int nbDisque){
 		tours = new LinkedList<Tour>();
@@ -38,6 +39,7 @@ public class Plateau {
 			try {
 				destination.ajouterDisque(tmp);
 				System.out.println(source+" vers "+destination);
+				deplacements++;
 			} catch (DisqueTropGrandException e) {
 				source.ajouterDisque(tmp);
 				throw new DisqueTropGrandException();
@@ -49,5 +51,9 @@ public class Plateau {
 	
 	public Tour getTour(int n){
 		return tours.get(n);
+	}
+
+	public int getDeplacements() {
+		return deplacements;
 	}
 }

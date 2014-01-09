@@ -74,6 +74,13 @@ public class Tour {
 	}
 
 	public boolean estVide() {
-		return Math.abs(taille) == 0;
+		return taille == 0;
+	}
+	
+	public void displayTower(int tailleTige) {
+		for(int i=0; i<tailleTige; i++) {
+			System.out.println(disques.get(i));
+		}
+		System.out.print("#");
 	}
 }
