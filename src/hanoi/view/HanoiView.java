@@ -41,7 +41,7 @@ public class HanoiView extends JFrame {
 	
 	public void display(Plateau p) {
 		try {
-			Thread.sleep(200);
+			Thread.sleep(800);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

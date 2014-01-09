@@ -31,7 +31,7 @@ public class Simulation {
 		if (mode.contains("cursif"))
 			HanoiRecursif(nbDisques, A, C, B);
 		else if(mode.contains("cycle"))
-			hanoiSensHoraire(nbDisques, A, B , C);
+			hanoiSens1(nbDisques, A, C , B);
 		else
 			HanoiIteratif(A, B, C);
 	}
@@ -64,38 +64,61 @@ public class Simulation {
 		if (nbDisques != 0) {
 		hanoiSensHoraire(nbDisques-1,A,C,B);
 		// move disc n  de A->B
-		deplacerDisqueEntreDeuxTours(A,B);
+		deplacer(A,B);
 		hanoiSensAntiHoraire(nbDisques-1,C,A,B);
 		// move disc n  de B->C
-		deplacerDisqueEntreDeuxTours(B,C);
+		deplacer(B,C);
 		hanoiSensHoraire(nbDisques-1,A,C,B);
 		}
+		view.display(plateau);
 	}
 	
 	private void hanoiSensAntiHoraire(int nbDisques, Tour A, Tour B, Tour C){
 		if (nbDisques != 0) {
 		hanoiSensHoraire(nbDisques-1,A,B,C);
-		// move disc n de D->A
-		deplacerDisqueEntreDeuxTours(A,C);
+		// move disc n de A->C
+		deplacer(A,C);
 		hanoiSensHoraire(nbDisques-1,B,C,A);
 		}
+		view.display(plateau);
 	}
 
 	public void HanoiIteratif(Tour A, Tour B, Tour C) {
 		view.display(plateau);
 		if (!nbDisquesPair())
-			deplacerDisqueEntreDeuxTours(A, C);
+			deplacer(A, C);
 		while (C.getTaille() != nbDisques) {
 			if (nbDisquesPair()) {
-				deplacerDisqueEntreDeuxTours(A, B);
-				deplacerDisqueEntreDeuxTours(A, C);
-				deplacerDisqueEntreDeuxTours(B, C);
+				deplacer(A, B);
+				deplacer(A, C);
+				deplacer(B, C);
 			} else {
-				deplacerDisqueEntreDeuxTours(A, B);
-				deplacerDisqueEntreDeuxTours(C, B);
-				deplacerDisqueEntreDeuxTours(A, C);
+				deplacer(A, B);
+				deplacer(C, B);
+				deplacer(A, C);
 			}
 		}
+	}
+	private void hanoiSens1(int n, Tour A, Tour B, Tour C) {
+		view.display(plateau);
+        if (n != 0) {
+        		hanoiSens2(n - 1, A, B, C);
+                deplacer(A, B);
+                hanoiSens2(n - 1, C, A, B);
+	        }
+        view.display(plateau);
+	}
+	
+	private void hanoiSens2(int n, Tour A, Tour B, Tour C) {
+		view.display(plateau);
+	        if (n != 0) {
+	        		hanoiSens2(n - 1, A, B, C);
+	                deplacer(A, B);
+	                hanoiSens1(n - 1, C, A, B);
+	                deplacer(B, C);
+	                hanoiSens2(n - 1, A, B, C);
+	        }
+	        view.display(plateau);
 	}
 
 	private boolean nbDisquesPair() {
@@ -103,6 +126,18 @@ public class Simulation {
 		if (modulo.equals(0))
 			return true;
 		return false;
+	}
+	
+	private void deplacer(Tour A, Tour B){
+		try {
+			plateau.DeplacerDisque(A,B);
+		} catch (DisqueTropGrandException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TourVideException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void deplacerDisqueEntreDeuxTours(Tour A, Tour B) {
