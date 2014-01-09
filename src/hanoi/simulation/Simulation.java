@@ -80,8 +80,14 @@ public class Simulation {
 		view.display(plateau);
 		
 		Tour tourPetitDisque = D;
-		Tour deuxieme = A;
-		Tour troisieme = I;
+		Tour deuxieme = I;
+		Tour troisieme = A;
+		
+		// si le nombre de disque est impair, on doit tourner dans l'autre sens
+		if(!nbDisquesPair()) {
+			deuxieme = A;
+			troisieme = I;
+		}
 		
 		while (A.getTaille() != nbDisques) {
 			// deplace le petit disque
