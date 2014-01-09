@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Shape;
+import java.util.Random;
 
 import drawSolution.AbstractSolution;
 
@@ -22,7 +23,7 @@ public class F4kSolution extends AbstractSolution {
 	public void drawSolutionk(Graphics drawingArea, int... arg) {
 		int x = arg[0];
 		int y = arg[1];
-		int d = arg[2];
+		int rayon = arg[2];
 		int fill = arg[3];
 		int n = arg[4];
 		int position;
@@ -31,23 +32,48 @@ public class F4kSolution extends AbstractSolution {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			position = 0;
 		}
-		drawingArea.setColor(Color.pink);
-		drawingArea.fillPolygon(createStar(x, y, n+2, d, 0));
-		drawingArea.setColor(Color.black);
-		drawingArea.drawRect(x, y, d, d);
+		
+		// couleur aléatoire
+		Random r = new Random();
+		int[] rC = new int[] {r.nextInt(256), r.nextInt(256), r.nextInt(256)};
+		Color current = new Color(rC[0],rC[1],rC[2]);
+		
+		drawingArea.setColor(Color.BLACK);
+		drawingArea.drawOval(x, y, rayon, rayon);
+		drawingArea.setColor(current.brighter());
+		drawingArea.fillOval(x, y, rayon, rayon);
+		
+		double angle;
+		switch(position) {
+			case 1: angle = -Math.PI/2; break; // gauche
+			case 2: angle =	Math.PI/2;	break; // droite
+			case 3: angle =	Math.PI;	break; 	//haut
+			case 4: angle =	0;	break; //bas
+			default: angle = 0;
+		}
+		drawingArea.setColor(current.darker());
+		drawingArea.drawPolygon(createStar(x, y, n+2, rayon, angle));
+		drawingArea.setColor(current);
+		drawingArea.fillPolygon(createStar(x, y, n+2, rayon, angle));
+		
 		if (n > 0) {
-			if(position !=3){ // si on est pas en BD
-				drawSolutionk(drawingArea, x - d/2, y-d/2,d/2, fill, n - 1, 1);
-			}
-			if(position !=4){// si on est pas en HD
-				drawSolutionk(drawingArea, x - d/2, y + d, d/2, fill, n - 1,2);
-			}
-			if(position !=1){// si on est pas en HG
-				drawSolutionk(drawingArea, x+d, y+ d, d/2,fill, n - 1, 3);
-			}
-			if(position !=2){// si on est pas en BG
-				drawSolutionk(drawingArea, x + d, y - d/2,d/2, fill, n - 1, 4);
-			}
+			int nouveauRayon = rayon / 2;
+			// cercle à gauche
+			if (position != 2) // si on est pas à droite
+				drawSolutionk(drawingArea, x - nouveauRayon, y + nouveauRayon
+						/ 2, nouveauRayon, fill, n - 1, 1);
+			// cercle à droite
+			if (position != 1) // si on est pas à gauche
+			drawSolutionk(drawingArea, x + rayon, y + nouveauRayon / 2,
+					nouveauRayon, fill, n - 1, 2);
+			// cercle en haut
+			if (position != 4) // si on est pas en bas
+			drawSolutionk(drawingArea, x + nouveauRayon / 2, y - nouveauRayon,
+					nouveauRayon, fill, n - 1, 3);
+			// cercle en bas
+			if (position != 3) // si on est pas en haut
+			drawSolutionk(drawingArea, x + nouveauRayon / 2, y + rayon,
+					nouveauRayon, fill, n - 1, 4);
 		}
 
 		
